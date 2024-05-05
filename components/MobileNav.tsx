@@ -14,6 +14,7 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Footer from "./Footer";
 
 const MobileNav = ({ user }: MobileNavProps) => {
   const pathName = usePathname();
@@ -54,9 +55,10 @@ const MobileNav = ({ user }: MobileNavProps) => {
                   return (
                     <SheetClose asChild key={l.label}>
                       <Link
-                        className={cn("mobilenav-sheet_close w-full", {
+                        clasName={cn("mobilenav-sheet_close w-full", {
                           "bg-bank-gradient": isActive,
                         })}
+                        s
                         href={l.route}
                       >
                         <Image
@@ -82,7 +84,7 @@ const MobileNav = ({ user }: MobileNavProps) => {
                 USERUSER
               </nav>
             </SheetClose>
-            FOOTER FOOTER
+            <Footer user={user} type="mobile" />
           </div>
         </SheetContent>
       </Sheet>
