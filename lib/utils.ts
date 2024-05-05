@@ -206,7 +206,7 @@ export const authFormSchema = (type: string) =>
       type === "sign-in"
         ? z.string().optional()
         : z.string().min(2, { message: "Please fill in your Last Name" }),
-    address:
+    address1:
       type === "sign-in"
         ? z.string().optional()
         : z.string().min(6, { message: "Please fill in your address" }).max(50),
