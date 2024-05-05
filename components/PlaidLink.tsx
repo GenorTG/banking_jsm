@@ -1,13 +1,10 @@
-"use client";
-
+import React, { useCallback, useEffect, useState } from "react";
+import { Button } from "./ui/button";
 import {
   PlaidLinkOnSuccess,
   PlaidLinkOptions,
   usePlaidLink,
 } from "react-plaid-link";
-import { Button } from "./ui/button";
-import { useCallback, useEffect, useState } from "react";
-import { StyledString } from "next/dist/build/swc";
 import { useRouter } from "next/navigation";
 import {
   createLinkToken,
@@ -16,11 +13,13 @@ import {
 
 const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
   const router = useRouter();
+
   const [token, setToken] = useState("");
 
   useEffect(() => {
     const getLinkToken = async () => {
       const data = await createLinkToken(user);
+
       setToken(data?.linkToken);
     };
 
@@ -33,9 +32,11 @@ const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
         publicToken: public_token,
         user,
       });
+
       router.push("/");
     },
-    [router, user]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [user]
   );
 
   const config: PlaidLinkOptions = {
@@ -49,7 +50,7 @@ const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
     <>
       {variant === "primary" ? (
         <Button
-          onClick={() => open}
+          onClick={() => open()}
           disabled={!ready}
           className="plaidlink-primary"
         >
@@ -63,4 +64,5 @@ const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
     </>
   );
 };
+
 export default PlaidLink;
