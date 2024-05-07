@@ -55,10 +55,9 @@ const MobileNav = ({ user }: MobileNavProps) => {
                   return (
                     <SheetClose asChild key={l.label}>
                       <Link
-                        clasName={cn("mobilenav-sheet_close w-full", {
+                        className={cn("mobilenav-sheet_close w-full", {
                           "bg-bank-gradient": isActive,
                         })}
-                        s
                         href={l.route}
                       >
                         <Image
