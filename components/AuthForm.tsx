@@ -203,6 +203,13 @@ const AuthForm = ({ type }: AuthFormProps) => {
           </footer>
         </>
       )}
+      {type === "sign-in" && (
+        <div className="flex flex-col gap-2">
+          <p className="text-sm">Try these credentials</p>
+          <p className="text-sm">email: test@fake.com</p>
+          <p className="text-sm">password: testtesttest</p>
+        </div>
+      )}
     </section>
   );
 };
