@@ -55,6 +55,7 @@ export const signIn = async ({ email, password }: signInProps) => {
     return parseStringify(user);
   } catch (error) {
     console.error("Error", error);
+    return "Your Email or password are incorrect.";
   }
 };
 

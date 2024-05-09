@@ -19,6 +19,7 @@ const AuthForm = ({ type }: AuthFormProps) => {
   const router = useRouter();
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [loginError, setLoginError] = useState("");
 
   const formSchema = authFormSchema(type);
 
@@ -58,7 +59,14 @@ const AuthForm = ({ type }: AuthFormProps) => {
           email: data.email,
           password: data.password,
         });
-        if (response) router.push("/");
+        if (response && response === "Your Email or password are incorrect.") {
+          setLoginError(response);
+          return;
+        }
+        if (response && response != "Your Email or password are incorrect.") {
+          setLoginError("");
+          router.push("/");
+        }
       }
     } catch (error) {
       console.log(error);
@@ -187,6 +195,9 @@ const AuthForm = ({ type }: AuthFormProps) => {
                 </Button>
               </div>
             </form>
+            {loginError != "" && (
+              <p className="text-red-500 font-bold">{loginError}</p>
+            )}
           </Form>
           <footer className="flex justify-center gap-1">
             <p className="text-14 font-normal text-gray-600">
@@ -206,8 +217,8 @@ const AuthForm = ({ type }: AuthFormProps) => {
       {type === "sign-in" && (
         <div className="flex flex-col gap-2">
           <p className="text-sm">Try these credentials</p>
-          <p className="text-sm">email: test@fake.com</p>
-          <p className="text-sm">password: testtesttest</p>
+          <p className="text-sm">email: testemail@gmail.com</p>
+          <p className="text-sm">password: testpassword</p>
         </div>
       )}
     </section>
